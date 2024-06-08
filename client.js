@@ -12,9 +12,9 @@ class Client {
 
     async init() {
         const instance = this;
-        console.log(`Try connecting ${instance.url}:${process.env.PORT}..`)
+        console.log(`Try connecting ${instance.url}:${instance.port}..`)
         return new Promise(function(resolve, reject) {
-            instance.socket = io(`${instance.url}:${process.env.PORT}`, {
+            instance.socket = io(`${instance.url}:${instance.port}`, {
                 query: {user_id: instance.auth.user_id},
                 auth: {token: instance.secretKey}
             });

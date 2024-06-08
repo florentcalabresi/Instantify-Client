@@ -36,7 +36,8 @@ class Client {
                 this.socket.on('notification', callback)
             }
         }else{
-            if(!this.queueSubscribe.includes((subscribe) => subscribe.channelName == channelName)) {
+            const subscribe = this.queueSubscribe.find((subscribe) => subscribe.channelName == channelName);
+            if(!subscribe) {
                 this.queueSubscribe.push({ channelName: channelName, callback: callback })
             }
         }

@@ -5,7 +5,7 @@ class Client {
     constructor(opts = {}) {
         this.url = opts.url || 'http://localhost';
         this.auth = opts.auth || { user_id: 1234 } ; // { user_id, user_name }
-        this.port = opts.port || 4150;
+        this.port = opts.port || "";
         this.secretKey = opts?.secretKey || process.env.SECRET_KEY;
         this.queueSubscribe = []
         this.socket = null;
@@ -14,7 +14,8 @@ class Client {
     async init() {
         const instance = this;
         return new Promise(function(resolve, reject) {
-            instance.socket = io(`${instance.url}:${instance.port}`, {
+            const uri = instance.url + instance.port !== "" ? ':' + instance.port : ''
+            instance.socket = io(uri, {
                 query: {user_id: instance.auth.user_id},
                 auth: {token: instance.secretKey}
             });

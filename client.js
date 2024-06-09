@@ -33,7 +33,10 @@ class Client {
         if(this.socket !== null) {
             if(this.socket?.connected) {
                 this.socket.emit('subscribe_channel', channelName)
-                this.socket.on('notification', callback)
+                this.socket.on('notification', (args) => {
+                    if(args.channel !== channelName) return;
+                    callback()
+                })
             }
         }else{
             const subscribe = this.queueSubscribe.find((subscribe) => subscribe.channelName == channelName);

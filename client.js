@@ -14,12 +14,12 @@ class Client {
     async init() {
         const instance = this;
         return new Promise(function(resolve, reject) {
-            const uri = instance.url + instance.port !== "" ? ':' + instance.port : ''
+            const uri = instance.url.startsWith('https') ? instance.url : instance.url + ':' + instance.port
             instance.socket = io(uri, {
                 query: {user_id: instance.auth.user_id},
                 auth: {token: instance.secretKey}
             });
-            
+
             instance.socket.on('connect', () => {
                 instance.queueSubscribe.forEach((subscribe) => {
                     console.log('Queue subscription for ', subscribe)

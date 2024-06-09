@@ -35,7 +35,7 @@ class Client {
                 this.socket.emit('subscribe_channel', channelName)
                 this.socket.on('notification', (args) => {
                     if(args.channel !== channelName) return;
-                    callback()
+                    callback(args)
                 })
             }
         }else{

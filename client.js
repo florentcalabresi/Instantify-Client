@@ -63,6 +63,23 @@ class Client {
         }
     }
 
+    async subscribeChannelPublic(channelName, callback) {
+        if(this.socket !== null) {
+            if(this.socket?.connected) {
+                this.socket.emit('subscribe_channel_public', channelName)
+                this.socket.on('notification', (args) => {
+                    if(args.channel !== channelName) return;
+                    callback(args)
+                })
+            }
+        }else{
+            const subscribe = this.queueSubscribe.find((subscribe) => subscribe.channelName == channelName);
+            if(!subscribe) {
+                this.queueSubscribe.push({ channelName: channelName, callback: callback })
+            }
+        }
+    }
+
 }
 
 export default Client;

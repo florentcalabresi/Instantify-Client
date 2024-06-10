@@ -28,6 +28,16 @@ class Client {
                 })
                 return resolve()
             })
+
+            instance.socket.on('error', (err) => {
+                console.log('Error', err)
+                return reject()
+            })
+
+            instance.socket.on('disconnect', (err) => {
+                console.log('Disconnect', err)
+                return reject()
+            })
         });
     }
 

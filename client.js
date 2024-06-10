@@ -29,6 +29,11 @@ class Client {
                 return resolve()
             })
 
+            instance.socket.on("connect_error", (err) => {
+                console.log(err)
+                return reject()
+            });
+
             instance.socket.on('error', (err) => {
                 console.log('Error', err)
                 return reject()

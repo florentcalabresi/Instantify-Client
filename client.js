@@ -18,7 +18,7 @@ class Client {
             instance.socket = io(uri, {
                 query: {user_id: instance.auth.user_id},
                 auth: {token: instance.secretKey},
-                transports: ["websocket"]
+                transports: ["polling"]
             });
 
             instance.socket.on('connect', () => {

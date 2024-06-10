@@ -17,7 +17,8 @@ class Client {
             const uri = instance.url.startsWith('https') ? instance.url : instance.url + ':' + instance.port
             instance.socket = io(uri, {
                 query: {user_id: instance.auth.user_id},
-                auth: {token: instance.secretKey}
+                auth: {token: instance.secretKey},
+                transports: ["websocket"]
             });
 
             instance.socket.on('connect', () => {

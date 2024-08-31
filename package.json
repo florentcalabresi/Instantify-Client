@@ -10,7 +10,6 @@
   "author": "SunshineDev",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.5",
     "esm": "^3.2.25",
     "socket.io-client": "^4.7.5"
   }

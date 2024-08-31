@@ -6,7 +6,7 @@ class Client {
         this.url = opts.url || 'http://localhost';
         this.auth = opts.auth || { user_id: 1234 } ; // { user_id, user_name }
         this.port = opts.port || "";
-        this.secretKey = opts?.secretKey || process.env.SECRET_KEY;
+        this.secretKey = opts?.secretKey;
         this.queueSubscribe = []
         this.socket = null;
     }
